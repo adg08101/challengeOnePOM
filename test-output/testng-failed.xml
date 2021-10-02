@@ -5,12 +5,9 @@
     <classes>
       <class name="pageObject.searchTest.GoogleSearchTests">
         <methods>
-          <include name="gsoftPageTestSlide"/>
+          <include name="gsoftPageTestContactFormFieldsFill"/>
           <include name="close"/>
           <include name="setUp"/>
-          <include name="checkResultURL"/>
-          <include name="validSearchTest"/>
-          <include name="visitFirstResultSite"/>
         </methods>
       </class> <!-- pageObject.searchTest.GoogleSearchTests -->
     </classes>

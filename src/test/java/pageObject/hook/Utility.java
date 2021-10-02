@@ -1,5 +1,6 @@
 package pageObject.hook;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,7 @@ public class Utility {
 
     public Utility(WebDriver remoteDriver){
         driver = remoteDriver;
-        setWaitSeconds(15);
+        setWaitSeconds(5);
         myWaitVar = new WebDriverWait(driver, getWaitSeconds());
     }
 
@@ -87,4 +88,40 @@ public class Utility {
     	if (!getUrl(url))
     		driver.get(url);
     }
+    
+    public boolean fillFormByArrays(String[] xpaths, String[] values, WebDriver driver, String submitBtn, 
+    		String cancelBtn, boolean fakeIt) {
+    	try {
+	    	if (xpaths.length == values.length) {
+		    	List<List<String>> data = new ArrayList<List<String>>();
+				for (int i =0; i < 2; i++)
+		            data.add(new ArrayList<String>());
+				for (int i = 0;i < xpaths.length;i++) {
+					data.get(0).add(xpaths[i]);
+					data.get(1).add(values[i]);
+				}
+				for (int i = 0;i < xpaths.length;i++) {
+					getElementBy(findBy.xpath, data.get(0).get(i), driver, null).sendKeys(data.get(1).get(i));
+				}
+				if (!fakeIt)
+					getElementBy(findBy.xpath, submitBtn, driver, null).click();
+				else
+					getElementBy(findBy.xpath, cancelBtn, driver, null).click();
+	    	} else {
+	    		return false;
+	    	}
+	    	return true;
+    	} catch(Exception e) {
+    		driver.navigate().refresh();
+    		return true;
+    	}
+    }
+
+	public void clickableToAction(String testXpath, String xpath) {
+		try {
+			getElementBy(findBy.xpath, testXpath, driver, null).click();
+		} catch(Exception e) {
+			getElementBy(findBy.xpath, xpath, driver, null).click();
+		}
+	}
 }

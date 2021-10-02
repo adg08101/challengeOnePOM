@@ -55,4 +55,13 @@ public class GoogleSearchTests extends Hook {
     	GsoftIncPage gSoftPage = new GsoftIncPage(getDriver(), getUtil());
     	Assert.assertTrue(gSoftPage.testContactForm());
     }
+    
+    @Test(priority=7)
+    public void gsoftPageTestContactFormFieldsFill(){
+    	//Check for URL to be GSoft (For singular testing purposes)
+    	util.checkURLAndGet(gSoftPageURL);
+    	//Test Contact Form
+    	GsoftIncPage gSoftPage = new GsoftIncPage(getDriver(), getUtil());
+    	Assert.assertTrue(gSoftPage.testContactFormFill());
+    }
 }
