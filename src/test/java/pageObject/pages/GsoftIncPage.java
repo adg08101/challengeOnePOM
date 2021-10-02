@@ -50,7 +50,6 @@ public class GsoftIncPage extends Hook {
 		String[] values = {"Ahmed Davila", "ahmed.davila@generalsoftwareinc.com", "Personal Home", 
 				"Testing Contact Info Submit"};
 		util.clickableToAction(nameXpath, contactBtn);
-		util.fillFormByArrays(xpaths, values, driver, submitBtnXpath, canceBtnXpath, true);
-		return true;
+		return util.fillFormByArrays(xpaths, values, driver, submitBtnXpath, canceBtnXpath, true);
 	}
 }
